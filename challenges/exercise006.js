@@ -6,6 +6,14 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  if(!Array.isArray(arr)) throw new Error("an array is required");
+  var total=0;
+  for(var i=0; i<arr.length; i++){
+    if(arr[i] % 3 ==0 || arr[i] % 5 == 0){
+        total+=arr[i];
+    }
+  }
+  return total;
 };
 
 /**
@@ -15,6 +23,12 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  
+  str.split('');
+  if(str.indexOf('A') != -1)
+    return true;
+  else
+    return false;
 };
 
 /**
@@ -24,6 +38,12 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  
+  var arr = str.map(function(item){
+    return item.replace('A', 'T');
+    });
+ return arr;
+  //return  str.replaceAll('A','T');;
 };
 
 /**
@@ -33,6 +53,21 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  var p=true;
+  if(n>1){
+    for(var i=2;i<n;i++){
+      if(n%i == 0){
+        p = false;
+        break;
+      }
+    }
+    if(p == true)
+       return true;
+       else
+       return false;
+  }
+
+  
 };
 
 /**
@@ -49,6 +84,14 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  var matrix=[];
+  for (var i=0;i<n;i++){
+    matrix[i]=[];
+    for(var j=0; j<n;j++){
+      matrix[i][j]=fill;
+    }
+  }
+  return matrix;
 };
 
 /**
@@ -66,6 +109,20 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  var total=0;
+  if(staff.length === 0){
+    return false;
+  }
+
+  for(var i=0; i<staff.length;i++){
+    if(staff[i].rota.indexOf("day") != -1){
+       total = total++;  
+    }
+  }
+  if(total >3)
+    return true;
+  else
+    return false;
 };
 
 module.exports = {

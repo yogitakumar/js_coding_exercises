@@ -4,6 +4,14 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  
+  var sum = 0;
+
+  while (n>0) {
+      sum += n % 10;
+      n = Math.floor(n / 10);
+  }
+  return sum;
 };
 
 /**
@@ -17,6 +25,14 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  var arr=[];
+  if(step === undefined)
+     step =1;
+  for(var i=start; i<= end; i=i+step)
+  {
+     arr.push(i);
+  }
+  return arr;
 };
 
 /**
