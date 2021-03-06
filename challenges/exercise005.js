@@ -65,14 +65,14 @@ const sumArrays = arrs => {
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
   // Your code here!
-   var n=arr.length-1;
+   var l=arr.length-1;
    if(arr.length < 2)
      return arr;
      else
      {
        var a=arr[0];
-      arr[0]=arr[n];
-      arr[n]=a;
+      arr[0]=arr[l];
+      arr[l]=a;
       return arr;
      }
 };
@@ -82,15 +82,12 @@ const findNeedle = (haystack, searchTerm) => {
   if (searchTerm === undefined) throw new Error("searchTerm is required");
   // Your code here!
     var arr = Object.values(haystack).map((val) => val.toString().toLowerCase());
-
     for (var i=0; i<arr.length;i++){
       if (arr[i].indexOf(searchTerm.toLowerCase())>=0){
            return true;
       }
     }
-  
 return false;
-    
 };
 
 const getWordFrequencies = str => {
