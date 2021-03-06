@@ -2,7 +2,6 @@ const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
   // Your code here!
-  //for(var i=0;i<nums.length;i++){
     var index =-1;
     index= nums.indexOf(n);
     if (nums == null){
@@ -14,7 +13,6 @@ const findNextNumber = (nums, n) => {
           return null;
        else
     return nums[index+1];
-  //}
 };
 
 const count1sand0s = str => {
@@ -83,22 +81,6 @@ const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
   // Your code here!
-  //console.log(haystack);
- 
-   /* for(let value of Object.values(haystack)){
-     
-     if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0)
-     {
-      console.log("Abhishek"+ value.toLowerCase());
-      console.log("Abhishek1"+ searchTerm.toLowerCase());
-       return true;
-
-     }
-        
-    }
-    return false;*/
-    //var arr;
-
     var arr = Object.values(haystack).map((val) => val.toString().toLowerCase());
 
     for (var i=0; i<arr.length;i++){
@@ -117,12 +99,10 @@ const getWordFrequencies = str => {
    var obj = {};
    var regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
    str=str.replace(regex, '');
-  //str = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
   str.split(" ").forEach(function(el, i, arr) {
     el = el.toLowerCase();
     obj[el] = obj[el] ? ++obj[el] : 1;
   });
-  
   return obj;
 };
 
