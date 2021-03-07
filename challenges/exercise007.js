@@ -67,6 +67,25 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+
+  var output = [];
+ 
+  for (var i = 0; i < users.length; i++) {
+    for (var j = 0; j < users[i].screenTime.length; j++) {
+
+      if (users[i].screenTime[j].date == date) {
+       
+        var temp_arr = Object.values(users[i].screenTime[j].usage).map((val) => val);
+        var val = temp_arr.reduce((a, b) => a + b, 0);
+        if (val > 100) {
+          output[i] = users[i].username.toString();
+          
+        }
+      }
+    }
+  }
+ return output;
+ 
 };
 
 /**
@@ -81,6 +100,25 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if(hexStr.length !== 7) throw new Error("hexStr is not in correct format");
+  
+  var decimal_arr=[];
+  var current_number = 0 ;
+  var prev_number = 0;
+  var base =16;
+ 
+  for(var i=1;i<hexStr.length;i++){
+       current_number= parseInt(hexStr[i],16);
+      
+      
+      if (i%2 == 0){
+          decimal_arr.push(prev_number*base + current_number);
+          current_number=0;
+      }
+      prev_number = current_number;
+  }
+ 
+  return "rgb("+ decimal_arr[0] + ","+  decimal_arr[1] + "," +  decimal_arr[2] + ")";
 };
 
 /**
@@ -95,6 +133,46 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+
+  
+ 
+ var win_combo =[];
+ 
+ for (var i = 0; i < board.length; i++) {
+     for (var j = 0; j < board[i].length; j++) {
+         win_combo.push(board[i][j]);
+     }
+ }
+
+ 
+     if ((win_combo[0] == 'X' && win_combo[1] == 'X' && win_combo[2] == 'X') ||
+         (win_combo[0] == 'X' && win_combo[3] == 'X' && win_combo[6] == 'X') ||
+         (win_combo[0] == 'X' && win_combo[4] == 'X' && win_combo[8] == 'X') ||
+         (win_combo[1] == 'X' && win_combo[4] == 'X' && win_combo[7] == 'X') ||
+         (win_combo[2] == 'X' && win_combo[5] == 'X' && win_combo[8] == 'X') ||
+         (win_combo[2] == 'X' && win_combo[4] == 'X' && win_combo[6] == 'X') ||
+         (win_combo[3] == 'X' && win_combo[4] == 'X' && win_combo[5] == 'X') ||
+         (win_combo[6] == 'X' && win_combo[7] == 'X' && win_combo[8] == 'X')) {
+             
+          return "X";
+ 
+ 
+     }
+     else if((win_combo[0] == '0' && win_combo[1] == '0' && win_combo[2] == '0') ||
+     (win_combo[0] == '0' && win_combo[3] == '0' && win_combo[6] == '0') ||
+     (win_combo[0] == '0' && win_combo[4] == '0' && win_combo[8] == '0') ||
+     (win_combo[1] == '0' && win_combo[4] == '0' && win_combo[7] == '0') ||
+     (win_combo[2] == '0' && win_combo[5] == '0' && win_combo[8] == '0') ||
+     (win_combo[2] == '0' && win_combo[4] == '0' && win_combo[6] == '0') ||
+     (win_combo[3] == '0' && win_combo[4] == '0' && win_combo[5] == '0') ||
+     (win_combo[6] == '0' && win_combo[7] == '0' && win_combo[8] == '0')){
+         return "0";
+ 
+     }
+     else {
+         return null;
+     }
+
 };
 
 module.exports = {
