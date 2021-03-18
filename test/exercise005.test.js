@@ -77,7 +77,7 @@ describe("arrShift", () => {
 
   test("makes no difference when the array length is < 2", () => {
     expect(arrShift([1])).toEqual([1]);
-    expect(arrShift([])).toEqual([]);
+   expect(arrShift([])).toEqual([]);
   });
 });
 
